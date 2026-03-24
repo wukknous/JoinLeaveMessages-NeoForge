@@ -29,12 +29,12 @@ public class PlayerDataStore {
     // Set of UUIDs that have joined before
     private static Map<String, Boolean> hasJoined = new HashMap<>();
 
-    public static void init(MinecraftServer server) {
-        File configDir = new File(server.getServerDirectory().toFile(), "config");
-        if (!configDir.exists()) configDir.mkdirs();
-        dataFile = new File(configDir, "joinleavemessages_playerdata.json");
-        load();
-    }
+  public static void init(MinecraftServer server) {
+    File configDir = server.getServerDirectory().resolve("config").toFile();
+    if (!configDir.exists()) configDir.mkdirs();
+    dataFile = new File(configDir, "joinleavemessages_playerdata.json");
+    load();
+}
 
     @SuppressWarnings("unchecked")
     private static void load() {
